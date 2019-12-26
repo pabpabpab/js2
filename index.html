@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Интернет-магазин</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        a {
+            text-decoration: none;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            height: 70px;
+            padding: 20px 30px;
+            background-color: #ddd;
+            border-bottom: 1px solid #ccc;
+        }
+        .btn-cart {
+            padding: 10px 25px;
+            color: #fff;
+            font-size: 16px;
+            background-color: #333;
+            border: none;
+            cursor: pointer;
+        }
+        .products {
+            display: flex;
+            width: 800px;
+            margin: 50px auto;
+        }
+        .product-item {
+            margin: 10px;
+            padding: 5px 10px 10px 10px;
+            border: 1px solid #ccc;
+        }
+        h3 {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .productImg__wrapper {
+            text-align: center;
+        }
+        .productImg {
+            width: 100px;
+            height: 120px;
+            margin: 0 auto;
+            border: 1px solid #d8d8d8;
+        }
+        .product__price {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .buy-btn {
+            display: block;
+            padding: 8px 10px;
+            font-size: 13px;
+            color: #000;
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: color, background-color 0.2s;
+        }
+        .buy-btn:hover {
+            color: #fff;
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <button class="btn-cart" type="button">Корзина</button>
+</header>
+<main>
+    <div class="products"></div>
+</main>
+<script src="./js/main.js"></script>
+</body>
+</html>
