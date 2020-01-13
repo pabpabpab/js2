@@ -35,7 +35,7 @@
         .products {
             display: flex;
             width: 800px;
-            margin: 50px auto;
+            margin: 30px auto 10px auto;
         }
         .product-item {
             margin: 10px;
@@ -55,14 +55,17 @@
             margin: 0 auto;
             border: 1px solid #d8d8d8;
         }
+        .desc {
+            display: block;
+        }
         .product__price {
             margin: 10px 0;
             font-size: 16px;
         }
         .buy-btn {
             display: block;
-            padding: 8px 10px;
-            font-size: 13px;
+            padding: 8px 15px;
+            font-size: 14px;
             color: #000;
             background-color: #ddd;
             border: 1px solid #ccc;
@@ -73,12 +76,15 @@
             color: #fff;
             background-color: #333;
         }
-
+        .products__totalPrice {
+            font-size: 20px;
+            text-align: center;
+        }
 
 
 
         .hamburger {
-            margin: 80px auto;
+            margin: 100px auto;
             background-color: #eee;
             border: 1px solid #888;
             font-size: 16px;
@@ -98,13 +104,19 @@
             padding: 20px;
             border-bottom: 1px solid #bbb;
         }
-        button {
+        .hamburger button {
             margin: 20px;
             padding: 10px 20px;
             font-size: 14px;
             color:#000;
             border-radius: 5px;
+            outline: none;
             cursor: pointer;
+            transition: color, background-color 0.2s;
+        }
+        .hamburger button:hover {
+            background-color: #aaa;
+            color:#00f;
         }
 
         .hamburger__total {
@@ -153,6 +165,7 @@
 <main>
     <div class="products"></div>
 </main>
+<script src="./js/main.js"></script>
 <script src="./js/hamburger.js"></script>
 </body>
 </html>
