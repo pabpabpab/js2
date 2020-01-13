@@ -1,7 +1,10 @@
 'use strict';
 
+
+//========================================<class Hamburger>=========================================
 class Hamburger {
-    constructor(title = 'small', initialPrice = 50, initialCalories = 20) {
+    constructor(container = '.hamburger', title = 'Small', initialPrice = 50, initialCalories = 20) {
+        this.container = container;
         this.title = title;
         this.initialPrice = initialPrice;
         this.initialCalories = initialCalories;
@@ -69,12 +72,13 @@ class Hamburger {
             ${this._renderTotalTopping(this.topping)}
             <div class="hamburger__total_total">
                 <div class="hamburger__total_price">Total calories: ${this.calcTotalCalories()}</div>
-                <div class="hamburger__total_price">Total price: ${this.calcTotalPrice()}</div>   
+                <div class="hamburger__total_price">Total price: ${this.calcTotalPrice()} \u20bd</div>   
             </div>         
             </div>`;
-        document.querySelector('.hamburger').insertAdjacentHTML('beforeend', html);
+        document.querySelector(this.container).insertAdjacentHTML('beforeend', html);
     }
 }
+//========================================</class Hamburger>=========================================
 
 
 
@@ -83,28 +87,29 @@ class Hamburger {
 
 
 
-
+//============================================<class Menu>===========================================
 class Menu {
 
-    constructor() {
-        this._render();
+    constructor(container = 'body') {
+        this.container = container;
+        this.render();
     }
 
 
     _typesOfHamburgers = [
-        {title: 'small', price: 50, calories: 20},
-        {title: 'big', price: 100, calories: 40}
+        {title: 'Small', price: 50, calories: 20},
+        {title: 'Big', price: 100, calories: 40}
     ];
 
     _typesOfStuffing = [
-        {title: 'cheese', price: 10, calories: 20},
-        {title: 'salad', price: 20, calories: 5},
-        {title: 'potato', price: 15, calories: 10}
+        {title: 'Cheese', price: 10, calories: 20},
+        {title: 'Salad', price: 20, calories: 5},
+        {title: 'Potato', price: 15, calories: 10}
     ];
 
     _typesOfTopping = [
-        {title: 'seasoning', price: 15, calories: 0},
-        {title: 'mayonnaise', price: 20, calories: 5}
+        {title: 'Seasoning', price: 15, calories: 0},
+        {title: 'Mayonnaise', price: 20, calories: 5}
     ];
 
 
@@ -153,7 +158,7 @@ class Menu {
         return `<div class="section">Add topping: ${buttonList.join('')}</div>`;
     };
 
-    _render() {
+    render() {
         const html = `<div class="hamburger">
         <div class="hamburger__header">Hamburger</div>
         ${this._renderSectionOfHamburgers(this._typesOfHamburgers)}
@@ -161,7 +166,7 @@ class Menu {
         ${this._renderSectionOfTopping(this._typesOfTopping)}        
         </div>`;
 
-        document.querySelector('body').insertAdjacentHTML('beforeend', html);
+        document.querySelector(this.container).insertAdjacentHTML('beforeend', html);
     };
 
 
@@ -171,7 +176,7 @@ class Menu {
         if (total) total.remove();
     }
 }
-
+//============================================</class Menu>===========================================
 
 
 
@@ -193,7 +198,7 @@ function eventListener() {
 
 
 
-
+//event handler
 function eventHandler(event) {
     switch (true) {
         case (Boolean(event.target.dataset.hamburgerTitle)):
@@ -201,7 +206,8 @@ function eventHandler(event) {
             const hamburgerTitle = event.target.dataset.hamburgerTitle;
             const hamburgerPrice = +event.target.dataset.hamburgerPrice;
             const hamburgerCalories = +event.target.dataset.hamburgerCalories;
-            hamburger = new Hamburger(hamburgerTitle, hamburgerPrice, hamburgerCalories);
+            // creating an instance of the Hamburger class
+            hamburger = new Hamburger('.hamburger', hamburgerTitle, hamburgerPrice, hamburgerCalories);
             break;
         case (Boolean(event.target.dataset.stuffingTitle)):
             if (!hamburger.title) return;
@@ -228,8 +234,8 @@ function eventHandler(event) {
 
 
 
-const menu = new Menu();
-let hamburger = {};
+const menu = new Menu('body'); //an instance of the Menu class
+let hamburger = {}; //there will be an instance of the Hamburger class here
 eventListener();
 
 
