@@ -34,13 +34,20 @@
         }
         .products {
             display: flex;
-            width: 800px;
+            justify-content: space-around;
+            width: 600px;
             margin: 30px auto 10px auto;
+        }
+        .products__header {
+            font-size: 18px;
+            text-align: center;
+            margin: 50px auto -30px auto;
         }
         .product-item {
             margin: 10px;
             padding: 5px 10px 10px 10px;
             border: 1px solid #ccc;
+            text-align: left;
         }
         h3 {
             margin: 10px 0;
@@ -77,84 +84,36 @@
             background-color: #333;
         }
         .products__totalPrice {
-            font-size: 20px;
+            font-size: 18px;
             text-align: center;
         }
 
 
-
-        .hamburger {
-            margin: 100px auto;
-            background-color: #eee;
-            border: 1px solid #888;
-            font-size: 16px;
-            color:#000;
-            width: 700px;
-        }
-        .hamburger__header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 30px;
+        .cart {
+            width: 600px;
+            margin: 20px auto 20px auto;
             font-size: 18px;
-            color:#000;
+            text-align: center;
         }
-        .section {
+        .cart__content {
             display: flex;
-            padding: 20px;
-            border-bottom: 1px solid #bbb;
+            justify-content: space-around;
+            margin: 0 auto;
         }
-        .hamburger button {
-            margin: 20px;
-            padding: 10px 20px;
+
+        .delete-btn {
+            display: block;
+            padding: 8px 15px;
             font-size: 14px;
-            color:#000;
-            border-radius: 5px;
-            outline: none;
+            color: #000;
+            background-color: #ddd;
+            border: 1px solid #ccc;
             cursor: pointer;
             transition: color, background-color 0.2s;
         }
-        .hamburger button:hover {
-            background-color: #aaa;
-            color:#00f;
-        }
-
-        .hamburger__total {
-            padding: 20px;
-            font-size: 18px;
-            color:#000;
-        }
-        .hamburger__total_title {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 50px;
-            font-size: 18px;
-            color:#000;
-        }
-        .hamburger__total_item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0px;
-            font-size: 16px;
-            color:#000;
-        }
-       .hamburger__total_section {
-           padding: 20px;
-           text-align: center;
-       }
-        .hamburger__total_price {
-            margin: 15px;
-        }
-
-        .hamburger__total_total {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 50px;
-            font-size: 18px;
-            color:#000;
+        .delete-btn:hover {
+            color: #fff;
+            background-color: #333;
         }
     </style>
 </head>
@@ -163,9 +122,9 @@
     <button class="btn-cart" type="button">Корзина</button>
 </header>
 <main>
+    <div class="cart"></div>
     <div class="products"></div>
 </main>
 <script src="./js/main.js"></script>
-<script src="./js/hamburger.js"></script>
 </body>
 </html>
