@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 4</title>
+    <style>
+        .feedback {
+            width: 600px;
+            background-color: #ccc;
+            color: #000;
+            font-size: 17px;
+            padding: 25px;
+            margin: 50px auto;
+        }
+        .feedback__header {
+            margin: -5px 0 20px 0;
+            text-align: center;
+            font-size: 20px;
+        }
+        .textInput {
+            margin: 0 0 10px 0;
+            padding: 10px 15px;
+            width: 550px;
+            font-size: 16px;
+            color: #000;
+            background-color: #fff;
+            border: 2px solid #aaa;
+        }
+        .textArea {
+            margin: 0 0 10px 0;
+            padding: 10px 15px;
+            width: 550px;
+            height: 150px;
+            font-size: 16px;
+            color: #000;
+            background-color: #fff;
+            border: 1px solid #aaa;
+        }
+        .submitBtn {
+            margin: 10px 0 0 0;
+            padding: 10px 15px;
+            width: 180px;
+            height: 50px;
+            font-size: 16px;
+            color: #000;
+            cursor: pointer;
+        }
+        .warning {
+            border: 2px solid #ff0000;
+        }
+    </style>
+</head>
+<body>
+<div class="feedback">
+    <div class="feedback__header">Форма обратной связи</div>
+    <form name="feedbackForm" action="#">
+        Ваше имя:<br>
+        <input type="text" name="userName" value="Alex" class="textInput">
+        <br>
+        Телефон:<br>
+        <input type="tel" name="userPhone" value="+7(000)000-0000" class="textInput">
+        <br>
+        E-mail:<br>
+        <input type="email" name="userEmail" value="mymail@mail.ru" class="textInput">
+        <br>
+        Сообщение:<br>
+        <textarea name="message" class="textArea"></textarea>
+        <br>
+        <input type="submit" name="submitBtn" value="Отправить" class="submitBtn">
+    </form>
+</div>
+<script src="./js/lesson4.js"></script>
+<script src="./js/feedback.js"></script>
+</body>
+</html>
