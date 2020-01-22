@@ -3,128 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>Интернет-магазин</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
-        body {
-            font-family: 'Roboto', sans-serif;
-        }
-        a {
-            text-decoration: none;
-        }
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            height: 70px;
-            padding: 20px 30px;
-            background-color: #ddd;
-            border-bottom: 1px solid #ccc;
-        }
-        .btn-cart {
-            padding: 10px 25px;
-            color: #fff;
-            font-size: 16px;
-            background-color: #333;
-            border: none;
-            cursor: pointer;
-        }
-        .products {
-            display: flex;
-            justify-content: space-around;
-            width: 600px;
-            margin: 30px auto 10px auto;
-        }
-        .products__header {
-            font-size: 18px;
-            text-align: center;
-            margin: 50px auto -30px auto;
-        }
-        .product-item {
-            margin: 10px;
-            padding: 5px 10px 10px 10px;
-            border: 1px solid #ccc;
-            text-align: left;
-        }
-        h3 {
-            margin: 10px 0;
-            font-size: 16px;
-        }
-        .productImg__wrapper {
-            text-align: center;
-        }
-        .productImg {
-            width: 100px;
-            height: 120px;
-            margin: 0 auto;
-            border: 1px solid #d8d8d8;
-        }
-        .desc {
-            display: block;
-        }
-        .product__price {
-            margin: 10px 0;
-            font-size: 16px;
-        }
-        .buy-btn {
-            display: block;
-            padding: 8px 15px;
-            font-size: 14px;
-            color: #000;
-            background-color: #ddd;
-            border: 1px solid #ccc;
-            cursor: pointer;
-            transition: color, background-color 0.2s;
-        }
-        .buy-btn:hover {
-            color: #fff;
-            background-color: #333;
-        }
-        .products__totalPrice {
-            font-size: 18px;
-            text-align: center;
-        }
-
-
-        .cart {
-            width: 600px;
-            margin: 20px auto 20px auto;
-            font-size: 18px;
-            text-align: center;
-        }
-        .cart__content {
-            display: flex;
-            justify-content: space-around;
-            margin: 0 auto;
-        }
-
-        .delete-btn {
-            display: block;
-            padding: 8px 15px;
-            font-size: 14px;
-            color: #000;
-            background-color: #ddd;
-            border: 1px solid #ccc;
-            cursor: pointer;
-            transition: color, background-color 0.2s;
-        }
-        .delete-btn:hover {
-            color: #fff;
-            background-color: #333;
-        }
-    </style>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header>
-    <button class="btn-cart" type="button">Корзина</button>
-</header>
-<main>
-    <div class="cart"></div>
-    <div class="products"></div>
-</main>
-<script src="./js/main.js"></script>
+<div id="app">
+    <header>
+        <div class="logo">Интернет-магазин</div>
+        <div class="cart">
+
+            <!-----------------<search-form>----------------->
+            <form action="#" class="search-form">
+                <input type="text" class="search-field" v-model="searchLine">
+                <button class="btn-search" type="submit" @click.prevent="filterGoods">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            <!-----------------</search-form>----------------->
+
+            <!--------------------<Корзина>------------------->
+            <button class="btn-cart" type="button" @click="isVisibleCart=!isVisibleCart">
+            {{calcTotalPrice() > 0 ? `Корзина ${calcTotalPrice()}₽` : `Корзина`}}
+            </button> <!--скрыть/показать корзину-->
+
+            <div class="cart-block" v-show="isVisibleCart">  <!--показывать корзину-->
+
+                <div  v-if="!isEmptyCart()"> <!--Корзина не пуста-->
+                    <div class="product-item" v-for="product of cartProducts" :key="product.id_product">
+                        <img :src="imgCatalog" alt="Some img">
+                        <div class="desc">
+                            <h3>{{product.product_name}}</h3>
+                            <p>{{product.price}}₽</p>
+                            <button class="del-btn" @click="deleteProduct(product)">Удалить</button>
+                        </div>
+                    </div>
+                    <div class="totalPrice">
+                        Итого: {{calcTotalPrice()}}₽
+                    </div>
+                </div>
+
+                <div class="cart-emptyCart" v-else> <!--Корзина пуста-->
+                    Корзина пуста
+                </div>
+
+            </div>
+            <!--------------------</Корзина>------------------->
+
+        </div>
+    </header>
+    <main>
+        <!--------------------<Список товаров>----------------->
+        <div class="products">
+            <div class="product-item" v-for="product of filteredProducts" :key="product.id_product">
+                <img :src="imgCatalog" alt="Some img">
+                <div class="desc">
+                    <h3>{{product.product_name}}</h3>
+                    <p>{{product.price}}₽</p>
+                    <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                </div>
+            </div>
+        </div>
+        <!-----------------</Список товаров>------------------->
+    </main>
+</div>
+<script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
