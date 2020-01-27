@@ -33,12 +33,6 @@ button:focus{
 .btn-cart, .logo{
     align-self: center;
 }
-/*.products {*/
-/*display: flex;*/
-/*justify-content: space-between;*/
-/*flex-wrap: wrap;*/
-/*padding: 40px 80px;*/
-/*}*/
 .products{
     column-gap: 30px;
     display: grid;
@@ -67,6 +61,7 @@ img {
     padding: 15px
 }
 .cart{
+    display: flex;
     position: relative;
 }
 .cart-block{
@@ -96,11 +91,7 @@ img {
     border-right: 10px solid transparent;
     border-bottom: 10px solid white;
 }
-.cart-emptyCart{
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-}
+
 .buy-btn, .del-btn{
     margin-top: 5px;
     background-color: #2f2a2d;
@@ -144,13 +135,6 @@ img {
     margin-top: 15px;
     font-size: 0.75em;
 }
-.totalPrice {
-    border-top: 1px solid #000;
-    padding: 20px;
-    font-size: 18px;
-    color: #000;
-    text-align: center;
-}
 .right-block{
     text-align: right;
 }
@@ -179,4 +163,14 @@ img {
     background-color: transparent;
     border: none;
     border-bottom: 2px solid #fafafa;
+}
+
+
+
+.error{
+    color: #000;
+    font-size: 16px;
+    margin: 0 auto;
+    padding: 30px;
+    text-align: center;
 }
